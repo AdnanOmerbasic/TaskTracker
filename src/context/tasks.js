@@ -53,6 +53,7 @@ const Provider = ({ children }) => {
     fetchAllTasks,
     createTask,
     editTaskById,
+    deleteTaskById,
   };
 
   return (

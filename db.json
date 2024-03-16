@@ -1,16 +1,3 @@
 {
-  "tasks": [
-    {
-      "newTask": "ddd",
-      "id": 1
-    },
-    {
-      "newTask": "dddddd",
-      "id": 2
-    },
-    {
-      "newTask": "Football",
-      "id": 3
-    }
-  ]
+  "tasks": []
 }
