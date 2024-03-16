@@ -1,12 +1,12 @@
 import useTaskContext from "../hooks/custom-hooks";
 import { useState } from "react";
 
-const EditTask = ({ task, onSubmit }) => {
-  const [updateTask, setUpdatedTask] = useState(task.task);
+const EditTask = ({ tasks, onSubmit }) => {
+  const [task, setTask] = useState(tasks.task);
   const { editTaskById } = useTaskContext();
 
   const handleChange = (e) => {
-    setUpdatedTask(e.target.value);
+    setTask(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -14,13 +14,13 @@ const EditTask = ({ task, onSubmit }) => {
 
     onSubmit();
 
-    editTaskById(updateTask.id, updateTask);
+    editTaskById(tasks.id, task);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <label>Task</label>
-      <input value={updateTask} onChange={handleChange} />
+      <input value={task} onChange={handleChange} />
       <button>Save Task</button>
     </form>
   );

@@ -18,14 +18,14 @@ const ShowTasks = ({ task }) => {
     setShowEdit(false);
   };
 
-  let content = <h3>{task.newTask}</h3>;
+  let content = <h3>{task.task}</h3>;
   if (showEdit) {
-    content = <EditTask task={task} onSubmit={handleSubmit} />;
+    content = <EditTask tasks={task} onSubmit={handleSubmit} />;
   }
   return (
     <div>
       <div>{content}</div>
-      <button onClick={handleEdit}></button>
+      <button onClick={handleEdit}>Edit</button>
       <button onClick={handleDelete}>Delete Task</button>
     </div>
   );

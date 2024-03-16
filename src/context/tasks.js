@@ -14,9 +14,9 @@ const Provider = ({ children }) => {
   };
 
   // Create Task
-  const createTask = async (newTask) => {
+  const createTask = async (task) => {
     const response = await axios.post(`http://localhost:3001/tasks`, {
-      newTask,
+      task,
     });
 
     const taskCreated = [...tasks, response.data];
@@ -29,6 +29,8 @@ const Provider = ({ children }) => {
     const response = await axios.put(`http://localhost:3001/tasks/${id}`, {
       task: newTask,
     });
+
+    console.log(response);
 
     const taskUpdated = tasks.map((task) => {
       if (task.id === id) {
