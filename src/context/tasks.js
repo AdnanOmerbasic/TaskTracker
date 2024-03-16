@@ -6,22 +6,53 @@ const TasksContext = createContext();
 const Provider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
 
+  // Get all Tasks
   const fetchAllTasks = async () => {
-    const response = axios.get(`http://localhost:3001/tasks`);
+    const response = await axios.get(`http://localhost:3001/tasks`);
 
     setTasks(response.data);
   };
 
-  const createTask = (newTask) => {
-    const response = axios.post(`http//localhost:3001/tasks`, {
+  // Create Task
+  const createTask = async (newTask) => {
+    const response = await axios.post(`http://localhost:3001/tasks`, {
       newTask,
     });
+
+    const taskCreated = [...tasks, response.data];
+
+    setTasks(taskCreated);
   };
 
+  // Edit Task
+  const editTaskById = async (id, newTask) => {
+    const response = await axios.put(`http://localhost:3001/tasks/${id}`, {
+      task: newTask,
+    });
+
+    const taskUpdated = tasks.map((task) => {
+      if (task.id === id) {
+        return { ...task, ...response.data };
+      }
+      return task;
+    });
+
+    setTasks(taskUpdated);
+  };
+
+  // Delete Task
+  const deleteTaskById = async (id) => {
+    await axios.delete(`http://localhost:3001/tasks/${id}`);
+    const removeTask = tasks.filter((task) => task.id !== id);
+    setTasks(removeTask);
+  };
+
+  // Share methods
   const methodsToShare = {
     tasks,
     fetchAllTasks,
     createTask,
+    editTaskById,
   };
 
   return (
