@@ -6,7 +6,13 @@ const TaskList = () => {
     return <ShowTasks key={task.id} task={task} />;
   });
 
-  return <div>{renderTaskList}</div>;
+  return (
+    <div className="mt-7 ">
+      <ul>
+        <li className=" min-h-customDisplayList">{renderTaskList}</li>
+      </ul>
+    </div>
+  );
 };
 
 export default TaskList;
